@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embody Wealth · Start Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum-deep:#1c1330;
+    --plum:#2a1f3d;
+    --plum-mid:#3d2c5a;
+    --purple:#6b5b95;
+    --lavender:#a99cc9;
+    --lavender-soft:#cfc5e6;
+    --gold:#c9a25a;
+    --gold-soft:#e3cd9a;
+    --cream:#f7f4ef;
+    --ink-light:#e8e3f2;
+    --ink-mid:#b3a9c9;
+    --ink-dim:#8a80a3;
+    --card-dark:rgba(255,255,255,.04);
+    --card-line:rgba(207,197,230,.14);
+
+    --grad-tab:linear-gradient(120deg,#cfc5e6 0%,#a99cc9 55%,#ffffff 115%);
+    --grad-tab-strong:linear-gradient(120deg,#b9a9dd 0%,#8a78b8 60%,#efeaf7 120%);
+    --grad-pink:linear-gradient(120deg,#e0b6dd,#b9a4e0 60%,#f0e6f5);
+
+    --radius:20px;
+    --font-display:'Cormorant Garamond',Georgia,serif;
+    --font-body:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{max-width:100%;overflow-x:hidden}
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:var(--font-body);
+    color:var(--ink-light);
+    line-height:1.65;
+    min-height:100vh;
+    background:var(--plum-deep);
+  }
+  .bg-layer{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 10%, rgba(169,156,201,.22), transparent 40%),
+      radial-gradient(circle at 88% 14%, rgba(224,182,221,.14), transparent 38%),
+      radial-gradient(circle at 80% 85%, rgba(207,197,230,.18), transparent 44%),
+      radial-gradient(circle at 25% 92%, rgba(107,91,149,.3), transparent 46%),
+      linear-gradient(165deg,#1c1330 0%,#2a1f3d 50%,#3d2c5a 100%);
+    background-size:cover;background-position:center;
+  }
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .stars span{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;opacity:.5;animation:tw 4s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.12}50%{opacity:.7}}
+  @media (prefers-reduced-motion:reduce){.stars span{animation:none}}
+
+  .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:24px 20px 70px}
+
+  /* Header */
+  .topbar{
+    display:flex;align-items:center;gap:16px;padding:18px 24px;margin-bottom:20px;
+    background:linear-gradient(120deg, rgba(169,156,201,.28), rgba(107,91,149,.2) 55%, rgba(224,182,221,.14));
+    border:1px solid rgba(207,197,230,.2);border-radius:var(--radius);backdrop-filter:blur(10px);
+  }
+  .crest{width:52px;height:52px;flex:0 0 52px;border-radius:15px;display:grid;place-items:center;
+    background:var(--grad-tab);color:var(--plum);font-size:25px;box-shadow:0 8px 24px -8px rgba(169,156,201,.7)}
+  .topbar h1{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:#fff;letter-spacing:.3px;line-height:1.1}
+  .topbar h1 em{font-style:italic;font-weight:600;background:var(--grad-pink);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .topbar p{color:var(--lavender-soft);font-size:.78rem;letter-spacing:1.5px;margin-top:3px;text-transform:uppercase}
+
+  .mobile-nav{display:none}
+
+  .layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:20px;align-items:start}
+
+  /* Sidebar */
+  .sidebar{
+    background:rgba(255,255,255,.035);border:1px solid var(--card-line);
+    border-radius:var(--radius);padding:22px 16px;position:sticky;top:18px;backdrop-filter:blur(6px);
+  }
+  .side-label{font-size:.64rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--lavender);font-weight:600;margin:4px 8px 8px;display:flex;align-items:center;gap:6px}
+  .side-title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:#fff;margin:0 8px 16px;line-height:1.15}
+  .prog-shell{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:0 8px 6px}
+  .prog-fill{height:100%;width:0;border-radius:6px;background:var(--grad-tab-strong);transition:width .5s ease}
+  .prog-pct{font-size:.72rem;color:var(--ink-dim);margin:0 8px 16px;letter-spacing:.5px}
+
+  .nav-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;border:none;cursor:pointer;
+    background:transparent;font-family:var(--font-body);padding:12px 11px;border-radius:12px;
+    color:var(--ink-mid);font-size:.93rem;transition:.2s;margin-bottom:2px}
+  .nav-item:hover{background:rgba(255,255,255,.05);color:var(--ink-light)}
+  .nav-item.active{background:var(--grad-tab);color:var(--plum);font-weight:600;box-shadow:0 6px 18px -8px rgba(169,156,201,.6)}
+  .nav-ring{flex:0 0 24px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+    font-size:.72rem;font-weight:600;border:1.5px solid var(--purple);color:var(--lavender);transition:.2s}
+  .nav-item.active .nav-ring{background:#fff;border-color:#fff;color:var(--purple)}
+  .nav-item.done .nav-ring{background:var(--purple);border-color:var(--purple);color:#fff;font-size:.8rem}
+  .nav-ico{font-size:1rem}
+  .nav-txt{flex:1;line-height:1.2}
+  .nav-day{font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-dim);display:block;margin-bottom:1px}
+  .nav-item.active .nav-day{color:var(--purple)}
+
+  /* Content panel */
+  .panel{min-width:0;width:100%}
+  .lesson-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .meta-day{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--lavender);font-weight:600}
+  .meta-chip{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;
+    font-weight:500;color:var(--lavender-soft);border:1px solid var(--card-line);padding:5px 13px;border-radius:30px}
+  .meta-chip.quick{color:var(--gold-soft);border-color:rgba(201,162,90,.3)}
+  button.meta-chip{cursor:pointer;background:rgba(255,255,255,.04);font-family:var(--font-body);transition:.2s}
+  button.meta-chip:hover{background:var(--grad-tab);color:var(--plum);border-color:transparent}
+
+  /* Action button (links out to quiz, classrooms, etc) */
+  .act-btn{display:inline-flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;
+    font-family:var(--font-body);font-size:.95rem;font-weight:600;color:var(--plum);
+    background:var(--grad-tab);padding:13px 24px;border-radius:30px;border:none;margin:6px 0 2px;
+    box-shadow:0 8px 22px -10px rgba(169,156,201,.8);transition:.2s}
+  .act-btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(169,156,201,.9)}
+  .act-btn.soon{background:rgba(255,255,255,.05);color:var(--ink-mid);border:1px dashed rgba(207,197,230,.3);box-shadow:none;cursor:default}
+  .act-btn.soon:hover{transform:none}
+  .act-btn .arr{font-size:1rem}
+  .btn-row{margin:18px 0 4px}
+
+  /* Video modal */
+  .modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,10,28,.82);backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;padding:24px}
+  .modal-bg.open{display:flex;animation:fade .25s ease}
+  .modal{width:100%;max-width:900px;background:var(--plum);border:1px solid rgba(207,197,230,.25);
+    border-radius:20px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.7)}
+  .modal-hdr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--card-line)}
+  .modal-hdr h3{font-family:var(--font-display);font-size:1.35rem;color:#fff;font-weight:600}
+  .modal-close{background:rgba(255,255,255,.06);border:none;cursor:pointer;color:var(--lavender-soft);
+    width:34px;height:34px;border-radius:50%;font-size:1.1rem;transition:.2s}
+  .modal-close:hover{background:rgba(255,255,255,.14);color:#fff}
+  .modal-video{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+  .modal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .modal-soon{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#2a1f3d,#6b5b95);color:var(--lavender-soft);text-align:center;gap:8px}
+  .modal-soon .big{font-family:var(--font-display);font-size:1.8rem;color:#fff;font-weight:600}
+
+  .lesson-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+  .lesson-title{font-family:var(--font-display);font-weight:700;font-size:2.7rem;line-height:1.05;color:#fff;letter-spacing:.3px}
+  .lesson-title .em{font-size:2.4rem;margin-right:6px}
+  .accent{background:var(--grad-pink);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .mark-top{border:1px solid rgba(207,197,230,.3);background:rgba(255,255,255,.04);cursor:pointer;
+    font-family:var(--font-body);font-size:.78rem;letter-spacing:.5px;color:var(--lavender-soft);
+    padding:9px 18px;border-radius:30px;white-space:nowrap;transition:.2s}
+  .mark-top:hover{background:rgba(255,255,255,.08)}
+  .mark-top.complete{background:var(--grad-tab-strong);border-color:transparent;color:#fff}
+
+  /* Tabs */
+  .tabs{display:flex;flex-wrap:nowrap;gap:4px;background:rgba(255,255,255,.04);border:1px solid var(--card-line);
+    padding:6px;border-radius:16px;margin-bottom:30px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{border:none;background:transparent;cursor:pointer;font-family:var(--font-body);font-size:.9rem;
+    color:var(--ink-mid);padding:11px 20px;border-radius:11px;display:flex;align-items:center;gap:8px;
+    transition:.2s;white-space:nowrap;flex:0 0 auto}
+  .tab:hover{color:var(--ink-light)}
+  .tab.active{background:var(--grad-pink);color:var(--plum);font-weight:600;box-shadow:0 5px 16px -6px rgba(185,164,224,.7)}
+
+  .pane{animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* Overview */
+  .desc{font-size:1.08rem;color:var(--ink-light);margin-bottom:22px}
+  .hero-callout{position:relative;background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(247,244,239,.92));
+    border-radius:18px;padding:30px 34px 30px 30px;margin:24px 0}
+  .hero-mark{position:absolute;top:6px;left:22px;font-family:var(--font-display);font-size:4rem;color:var(--lavender);opacity:.5;line-height:1}
+  .hero-text{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.55rem;line-height:1.3;color:var(--plum);padding-left:30px}
+
+  .info-card{background:var(--card-dark);border:1px solid var(--card-line);border-radius:16px;padding:24px 26px;margin:18px 0}
+  .info-card h4{font-family:var(--font-display);font-size:1.4rem;color:#fff;margin-bottom:10px;font-weight:600}
+  .info-card p{color:var(--ink-mid);margin-bottom:12px}
+  .info-card p:last-child{margin-bottom:0}
+  .info-card .lead{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--lavender);font-weight:600;margin-bottom:10px}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .mini-card{background:var(--card-dark);border:1px solid var(--card-line);border-radius:14px;padding:20px 22px}
+  .mini-card .ic{font-size:1.6rem;margin-bottom:8px;display:block}
+  .mini-card h5{font-family:var(--font-display);font-size:1.25rem;color:#fff;margin-bottom:6px;font-weight:600}
+  .mini-card p{color:var(--ink-mid);font-size:.95rem;margin:0}
+
+  /* Key Concepts */
+  .pullquote{background:linear-gradient(120deg,rgba(207,197,230,.16),rgba(255,255,255,.08),rgba(169,156,201,.12));
+    border-left:3px solid var(--lavender);border-radius:14px;padding:24px 28px;margin:16px 0}
+  .pullquote p{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.45rem;line-height:1.35;color:#fff;margin:0}
+
+  .accordion{background:var(--card-dark);border:1px solid var(--card-line);border-radius:14px;margin:10px 0;overflow:hidden}
+  .acc-head{width:100%;display:flex;align-items:center;gap:13px;padding:18px 22px;background:transparent;border:none;
+    cursor:pointer;font-family:var(--font-body);text-align:left;color:#fff;font-size:1.05rem;font-weight:500;transition:.2s}
+  .acc-head:hover{background:rgba(255,255,255,.03)}
+  .acc-ico{font-size:1.3rem;flex:0 0 auto}
+  .acc-title{flex:1}
+  .acc-arrow{color:var(--lavender);transition:transform .3s;font-size:.9rem}
+  .accordion.open .acc-arrow{transform:rotate(180deg)}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .acc-body-inner{padding:0 22px 20px 56px;color:var(--ink-mid)}
+
+  .callout-box{border-radius:16px;padding:22px 26px;margin:16px 0}
+  .callout-box.gradient{background:linear-gradient(120deg,rgba(169,156,201,.22),rgba(255,255,255,.1) 55%,rgba(107,91,149,.18));border:1px solid rgba(169,156,201,.35)}
+  .callout-box.white{background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(247,244,239,.92))}
+  .callout-box h4{font-family:var(--font-display);font-size:1.3rem;margin-bottom:8px;font-weight:600}
+  .callout-box.gradient h4{color:#fff}
+  .callout-box.white h4{color:var(--plum)}
+  .callout-box.gradient p{color:var(--ink-light);margin:0}
+  .callout-box.white p{color:var(--plum-mid);margin:0}
+
+  /* Do This */
+  .actions-lead{background:var(--card-dark);border:1px solid var(--card-line);border-radius:14px;padding:18px 22px;margin-bottom:18px}
+  .actions-lead .lead-badge{font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--lavender);font-weight:600;margin-bottom:6px}
+  .actions-lead p{color:var(--ink-mid);margin:0}
+  .action-card{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(120deg,rgba(255,255,255,.97),rgba(247,244,239,.93));
+    border-radius:16px;padding:22px 26px;margin:12px 0}
+  .action-num{font-family:var(--font-display);font-weight:700;font-size:1.5rem;
+    background:var(--grad-tab-strong);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex:0 0 auto;line-height:1.2}
+  .action-text{color:var(--plum-mid);font-size:1.02rem;padding-top:2px}
+
+  /* Prompt */
+  .prompt-intro{color:var(--ink-mid);margin-bottom:16px;font-size:1.02rem}
+  .prompt-box{background:var(--card-dark);border:1px solid var(--card-line);border-radius:16px;overflow:hidden}
+  .prompt-hdr{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:14px 18px;border-bottom:1px solid var(--card-line);background:rgba(255,255,255,.03)}
+  .prompt-badge{font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--lavender);font-weight:600}
+  .prompt-copy{border:1px solid rgba(207,197,230,.3);background:rgba(255,255,255,.05);cursor:pointer;
+    font-family:var(--font-body);font-size:.8rem;color:var(--lavender-soft);padding:7px 14px;border-radius:20px;transition:.2s}
+  .prompt-copy:hover{background:rgba(255,255,255,.1)}
+  .prompt-copy.copied{background:var(--grad-tab-strong);border-color:transparent;color:#fff}
+  .prompt-text{padding:22px 24px;color:var(--ink-light);white-space:pre-wrap;font-size:.98rem;line-height:1.6}
+
+  .link-out{color:var(--lavender-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--purple)}
+  .link-out:hover{color:#fff}
+
+  .sig{margin-top:30px;padding-top:22px;border-top:1px solid var(--card-line);
+    font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--lavender-soft)}
+  .sig .star{color:var(--gold-soft);font-style:normal}
+
+  /* Bottom bar */
+  .lesson-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:26px;border-top:1px solid var(--card-line)}
+  .mark-big{border:none;cursor:pointer;font-family:var(--font-body);font-size:1rem;font-weight:600;letter-spacing:.3px;
+    color:var(--plum);padding:15px 32px;border-radius:32px;background:var(--grad-tab);box-shadow:0 10px 30px -10px rgba(169,156,201,.8);transition:.2s}
+  .mark-big:hover{transform:translateY(-1px);box-shadow:0 14px 34px -10px rgba(169,156,201,.9)}
+  .mark-big.complete{background:var(--grad-tab-strong);color:#fff}
+  .next-link{background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:.95rem;color:var(--ink-mid);transition:.2s;display:flex;align-items:center;gap:6px}
+  .next-link:hover{color:#fff}
+  .next-link span{color:var(--lavender-soft)}
+
+  /* Confetti */
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden;display:none}
+  .confetti.go{display:block}
+  .confetti i{position:absolute;top:-20px;width:9px;height:9px;border-radius:2px;animation:fall 2.4s linear forwards}
+  @keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:0}}
+
+  @media (max-width:880px){
+    .layout{grid-template-columns:minmax(0,1fr);gap:14px}
+    .sidebar{display:none}
+    .mobile-nav{display:block;position:sticky;top:10px;z-index:5;margin-bottom:14px}
+    .mobile-nav select{width:100%;font-family:var(--font-body);font-size:1rem;color:#fff;padding:15px 18px;border-radius:14px;
+      border:1px solid rgba(207,197,230,.25);background:rgba(42,31,61,.96) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'><path d='M3 5l4 4 4-4' stroke='%23cfc5e6' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>") no-repeat right 18px center;
+      appearance:none;-webkit-appearance:none;font-weight:500}
+    .lesson-title{font-size:2.1rem}
+    .lesson-title .em{font-size:1.9rem}
+    .two-col{grid-template-columns:1fr}
+    .topbar h1{font-size:1.3rem}
+  }
+  @media (max-width:480px){
+    .wrap{padding:16px 11px 50px}
+    .lesson-title{font-size:1.75rem}
+    .hero-text{font-size:1.25rem}
+    .action-card{padding:18px 18px;gap:14px}
+    .acc-body-inner{padding-left:22px}
+  }
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="stars" id="stars"></div>
+<div class="confetti" id="confetti"></div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h3 id="modalTitle">Video lesson</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="topbar">
+    <div class="crest">✦</div>
+    <div>
+      <h1>Embody Wealth · <em>Start Here</em></h1>
+      <p>Your 7-day welcome journey</p>
+    </div>
+  </header>
+
+  <div class="mobile-nav"><select id="mobileSelect" aria-label="Choose a day"></select></div>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="side-label">✦ Start Here</div>
+      <div class="side-title">Your 7-Day Welcome</div>
+      <div class="prog-shell"><div class="prog-fill" id="progFill"></div></div>
+      <div class="prog-pct" id="progPct">0% complete</div>
+      <div id="navList"></div>
+    </nav>
+    <main class="panel" id="panel"></main>
+  </div>
+</div>
+
+<script>
+const SIG = `<div class="sig">I believe in you. To living our dreams. — Aurailia <span class="star">✦</span></div>`;
+
+const DAYS = [
+  /* ---------------- DAY 1 ---------------- */
+  {
+    title:"Welcome In", accent:"In", emoji:"🤗", dur:"4 min", video:true, videoUrl:"",
+    overview:{
+      desc:"Watch the short video above first. It's me telling you who I am, why this place exists, and what you're stepping into. Here's the quick version so you know where you've landed.",
+      hero:"You get both here. The receiving and the building. That's the whole point.",
+      cards:[
+        {lead:"What this space is", h:"Two things at once, on purpose", p:["This is a space for the inner work that changes how you hold money and yourself, and the real business strategy that turns your gifts into cashflow.","Group hypnosis, cacao ceremonies, oracle pulls, and monthly themes on one side. Micro offers, niche clarity, magnetic messaging, and the artifacts I build for you on the other.","We're starting minimal and growing based on what you actually want. So your voice shapes this place. Tell me what you need and watch it show up."]}
+      ]
+    },
+    concepts:[
+      {type:"accordion", icon:"🌙", h:"My story, the short version",
+        body:"I spent my career as an executive level Director, managing a half a billion dollar website. From the outside everything looked great. The salary, the dream home, all of it. On the inside I felt like I was dying a slow death. Then the universe stepped in and I got laid off. No job, no income, and a mortgage every month. I cried for a day, then I rolled up my sleeves and built this."},
+      {type:"accordion", icon:"👑", h:"Then Human Design found me",
+        body:"I started with coaching, got certified in everything I felt pulled toward. Master Reiki, Shamanic Healing, Akashic Records, Hypnotherapy. Then Human Design found me and everything changed. Women started coming to me for clarity and strategy because of my 20 years in e-commerce, then for web design, and I saw the whole picture. They didn't just need strategy. They needed the mindset too. Because strategy without frequency leaves you in chaos and fear and doubt. So I created Embody Wealth."},
+      {type:"pullquote", text:"You can manifest all day and still have no offer anyone can buy. You can have a perfect funnel and still be energetically pushing money away. You need both."}
+    ],
+    actions:[
+      "Download the Skool app on your phone (iOS or Android) so you get notified about live calls, comments, and community drops the second they happen. Highest-leverage thing you can do in your first five minutes.",
+      "Take a quick tour of the top nav: Community, Classrooms, Calendar, Members.",
+      "Post a quick hello in the community so we know you're here. Just your name, where you're from, and the work you do or want to do."
+    ],
+    promptIntro:"Want a head start on your intro post? Here's a simple template. Fill in the arrows and drop it in the community.",
+    promptBadge:"Copy-paste into the community →",
+    prompt:"Hi, I'm [YOUR NAME] 👋\n\n→ Where I'm from: [CITY / COUNTRY]\n→ The work I do (or want to do): [YOUR MODALITY OR DREAM]\n→ What pulled me into Embody Wealth: [ONE SENTENCE]\n→ One thing I'm calling in right now: [WHAT YOU WANT]\n\nSo glad to be here ✦"
+  },
+
+  /* ---------------- DAY 2 ---------------- */
+  {
+    title:"Meet Your Wealth Queen", accent:"Wealth Queen", emoji:"👑", dur:"5 min", video:true, videoUrl:"",
+    links:{ queen:"https://aurailia.github.io/embody-wealth-queen-archetype/", chart:"https://www.ihdschool.com/get-your-chart" },
+    overview:{
+      desc:"Today you meet the version of you that money flows to most easily. Your Wealth Queen Archetype is the way you're built to create wealth. Not a generic money personality test. It reads how you're actually wired and hands you back your starting point in the circle.",
+      hero:"It starts here. With you. With the woman you actually are underneath all the noise about who you're supposed to be.",
+      cards:[
+        {lead:"Your first artifact", h:"The Wealth Queen Archetype quiz", p:["This is the first artifact I'm dropping into our community. Watch the quick video above and I'll walk you through it. Then go find your Queen.","When you get your result, you'll also get a 7-day embodiment practice made for how you operate. That practice is your first real step into the work. This is where you begin."]}
+      ],
+      button:{ label:"Take the Wealth Queen Quiz", href:"https://aurailia.github.io/embody-wealth-queen-archetype/" }
+    },
+    concepts:[
+      {type:"accordion", icon:"🌀", h:"A quick word on Human Design",
+        body:"Part of what shapes your Queen comes from your Human Design. It's a system that blends ancient wisdom with modern science. It pulls from the chakra system, the Kabbalah Tree of Life, the Chinese I-Ching, astrology, and quantum physics, and weaves them into one map of how your energy works. Think of it as an owner's manual for you. Most of us were taught to push, hustle, and copy what works for everyone else. Your design shows you the way that actually works for you."},
+      {type:"callout", style:"gradient", h:"Grab your free chart first",
+        body:"The quiz uses your Type and Profile to read you accurately. Go to <a href='https://www.ihdschool.com/get-your-chart' target='_blank' rel='noopener' class='link-out'>ihdschool.com/get-your-chart</a>, enter your birth date, time, and place, and you'll get your Type (like Manifesting Generator or Projector) and Profile (two numbers, like 2/4). I also link it inside the quiz, so don't stress."},
+      {type:"pullquote", text:"Answer honestly, not how you think you should. The real answer is the one that brings the real results."}
+    ],
+    actions:[
+      "Grab your free Human Design chart at <a href='https://www.ihdschool.com/get-your-chart' target='_blank' rel='noopener' class='link-out'>ihdschool.com/get-your-chart</a>. Note your Type and Profile.",
+      "Take the <a href='https://aurailia.github.io/embody-wealth-queen-archetype/' target='_blank' rel='noopener' class='link-out'>Wealth Queen Archetype quiz</a>. Read your whole result and sit with it.",
+      "Start your 7-day embodiment practice. This is your first real practice, and it's made just for your Queen. Small daily steps.",
+      "Share your Queen in the community. One sentence on what landed or what surprised you."
+    ],
+    actionButton:{ label:"Take the Wealth Queen Quiz", href:"https://aurailia.github.io/embody-wealth-queen-archetype/" }
+  },
+
+  /* ---------------- DAY 3 ---------------- */
+  {
+    title:"How This Space Works", accent:"Works", emoji:"📚", dur:"3 min", video:true, videoUrl:"",
+    overview:{
+      desc:"Watch the short video above, then come back here. This is where everything I build for you lives. The artifacts, the trainings, the embodiment work, the business tools. All of it sits inside the classrooms, organized so you can actually find what you need.",
+      hero:"Nothing here is a race. You're not behind.",
+      cards:[
+        {lead:"How it's laid out", h:"Two sides, one space", p:["Each classroom holds a different part of the work. Some are for the inner work, the frequency and embodiment side. Some are for the business side, the tools and strategy. You'll move between both, because that's how this whole thing works.","Inside each classroom you'll find lessons. Click in, watch or read, and work through them at your own pace."]}
+      ]
+    },
+    concepts:[
+      {type:"accordion", icon:"🧭", h:"How to use it",
+        body:"Start where you are, not where you think you should be. If something calls you, go there. If you're not sure, follow the order I've laid out and you'll be fine. You don't have to do everything at once. Come in, take what you need, and come back. The classrooms aren't going anywhere."},
+      {type:"callout", style:"gradient", h:"The library grows with you",
+        body:"We're starting minimal and growing this based on what you actually want. New classrooms and lessons will show up over time. Keep checking back. A lot of what lands here comes straight from what you tell me you need."},
+      {type:"pullquote", text:"As you mark lessons complete, you'll see your progress fill in. That's there to help you keep your place, not to pressure you."}
+    ],
+    actions:[
+      "Open each classroom once just to see what's inside. You don't have to do anything yet, just get the lay of the land.",
+      "Bookmark or favorite the one classroom that pulls at you most right now.",
+      "Drop a comment or question in the community if anything feels unclear. That's how the space grows."
+    ]
+  },
+
+  /* ---------------- DAY 4 ---------------- */
+  {
+    title:"The Monthly Theme", accent:"Theme", emoji:"🌙", dur:"3 min", video:true, videoUrl:"",
+    overview:{
+      desc:"Watch the short video above, then come back here. Every month inside Embody Wealth has a theme. It's the energy we're working with together as a community, the thing we're calling in and embodying for those few weeks.",
+      hero:"Instead of doing a hundred scattered things, we move through one thing at a time, together.",
+      cards:[
+        {lead:"What it is", h:"Our rhythm, month by month", p:["Each theme comes with an artifact I build for you. An interactive tool made for that month's energy, something you can actually use and come back to. And like everything I build here, you can take what you learn into your own business too.","The theme gives our work a rhythm. The live calls, the practices, the energy all point toward it."]}
+      ],
+      button:{ label:"Go to the Monthly Theme classroom", soon:true }
+    },
+    concepts:[
+      {type:"callout", style:"gradient", h:"This is the community rhythm, not a to-do",
+        body:"The theme is what we're all doing together this month. It's optional daily texture, not a required practice. If you're brand new and already working through your Queen practice, you don't have to keep up with the theme too. Drop into it when you're settled. You'll catch the next wave."},
+      {type:"pullquote", text:"Sit with the theme, notice what comes up, and let it guide your month. Some themes will feel exciting. Some will poke at exactly the thing you've been avoiding. Both are good signs."}
+    ],
+    actions:[
+      "Go look at this month's theme and open the artifact waiting for you there.",
+      "Read the theme and notice what comes up. No pressure to do all the daily practices, just let it land.",
+      "When you're ready, weave one small piece of the theme into your week."
+    ],
+    actionButton:{ label:"Go to the Monthly Theme classroom", soon:true }
+  },
+
+  /* ---------------- DAY 5 ---------------- */
+  {
+    title:"Show Up Live", accent:"Live", emoji:"🗓️", dur:"3 min", video:true, videoUrl:"",
+    overview:{
+      desc:"Watch the short video above, then come back here. The classrooms and artifacts are yours to move through on your own time, but the live calls are where the real magic happens, when we're all in the same space at the same time.",
+      hero:"This community comes alive when you show up.",
+      cards:[
+        {lead:"When we meet", h:"Fridays at 3:30pm PDT", p:["If you're in Sydney like some of our community, that's 8:30am Saturday your time. Add it to your calendar now so you don't miss it.","Showing up live is where the shifts happen, and the replays go into the classroom too, so you're never left out."]}
+      ]
+    },
+    concepts:[
+      {type:"accordion", icon:"💫", h:"Group hypnosis, monthly",
+        body:"This is the heart of what we do. Once a month we drop in together for live group hypnosis, and we open with EFT tapping to clear what's sitting on the surface before we go deeper. This is where we release what's been blocking you, reprogram the patterns around money and worth, and embody the version of you that wealth flows to. Just show up, have water nearby, get somewhere you won't be disturbed, and let me take you under. The replay goes into the classroom for the month."},
+      {type:"accordion", icon:"🍫", h:"Cacao ceremony and connection call",
+        body:"Inside Premium, we add two more ways to gather, and they alternate month to month. One month we come together for cacao ceremony, a heart opener we use to soften, connect, and drop into our bodies together. The next month we gather for a connection call, our time to simply be together, share where you're at, and be witnessed by women who get it. No performing, no pressure."},
+      {type:"pullquote", text:"You don't have to do anything but show up and let yourself be guided."}
+    ],
+    actions:[
+      "Add the Friday call to your calendar now. 3:30pm PDT, 8:30am Saturday Sydney.",
+      "Come to the next live group hypnosis. Have water nearby and a quiet space.",
+      "If you're Premium, watch for whether this month is cacao or a connection call, and come gather with us."
+    ]
+  },
+
+  /* ---------------- DAY 6 ---------------- */
+  {
+    title:"Share the Magic", accent:"Magic", emoji:"💸", dur:"2 min", video:true, videoUrl:"",
+    overview:{
+      desc:"Watch the short video above, then come back here. Here's something I love about this community. You can earn by sharing it. If Embody Wealth has done something for you, chances are you know other women who need it too.",
+      hero:"When you share from your own experience, the right women feel it.",
+      cards:[
+        {lead:"How it works", h:"Earn by sharing", p:["Skool has an affiliate program built right in, so there's nothing complicated to set up. You get your own personal link, and when someone joins through it, you earn a commission for being the one who brought them in.","To get your link, go to the Members tab and select Invite. That's where your personal link lives. Copy it, and you're set."]}
+      ],
+      button:{ label:"Go to the Share the Magic classroom", soon:true }
+    },
+    concepts:[
+      {type:"callout", style:"gradient", h:"The full details are in their own classroom",
+        body:"Want everything on how the affiliate program works, the commission, and the rest? I've put it all in its own classroom for you. There's a direct link inside the affiliate lesson."},
+      {type:"pullquote", text:"Don't overthink this. You don't need to be salesy. The most magnetic thing you can do is be honest about what this community has done for you."}
+    ],
+    actions:[
+      "Go to the Members tab, select Invite, and grab your personal link so it's ready when you want it.",
+      "Check out the affiliate classroom for the full details.",
+      "Next time you feel a shift here, jot down one honest sentence about it. That's your most magnetic share."
+    ],
+    actionButton:{ label:"Go to the Share the Magic classroom", soon:true }
+  },
+
+  /* ---------------- DAY 7 ---------------- */
+  {
+    title:"Recalibrate", accent:"Recalibrate", emoji:"🌟", dur:"5 min", video:true, videoUrl:"",
+    overview:{
+      desc:"You made it. You're oriented now. You know who I am, you've met your Queen, you know where everything lives and how we gather. So here's where the real centering begins.",
+      hero:"This is the doorway from finding your way around to actually creating what you came here for.",
+      cards:[
+        {lead:"Your next chapter", h:"The Recalibrate audio activations", p:["Recalibrate is your space for coming back to center. It's built around 7 days of audio activations that tune your nervous system and your money frequency to what you're here to create.","When you're activated, spiraling about money, or just need to come home to yourself, this is what you'll reach for. When the activations land, you'll start with Day 1 and let them move you through.","This is almost here. The moment it's ready, it's yours. No rush, no pressure. When you want to go deeper into the frequency, Recalibrate will be waiting."]}
+      ],
+      button:{ label:"Go to Recalibrate", soon:true }
+    },
+    concepts:[
+      {type:"accordion", icon:"🎧", h:"How Recalibrate will work",
+        body:"When it's live, you'll find a quiet space where you won't be disturbed, pop in headphones if you have them, and start with Day 1. You'll move through one activation a day, or come back to whichever one you need when you need it. There's no wrong way. The activations work on you whether you're actively trying or just letting them play. Let them do the work."},
+      {type:"pullquote", text:"You've spent this week learning to receive. Now we center you for both. The receiving and the building, from a regulated, magnetic place."}
+    ],
+    actions:[
+      "Keep an eye out for Recalibrate. The moment the activations drop, you'll be the first to know.",
+      "Start thinking about a time of day that's yours, morning before the noise or evening to unwind, where an activation could live.",
+      "For now, stay close to your Queen practice and the community. Recalibrate is your next step, and it's coming."
+    ],
+    actionButton:{ label:"Go to Recalibrate", soon:true },
+    closing:true
+  }
+];
+
+/* ---------------- State ---------------- */
+let current = 0;
+const done = DAYS.map(()=>false);
+let activeTab = "overview";
+
+const TAB_DEFS = [
+  {id:"overview", label:"Overview", icon:"✦"},
+  {id:"concepts", label:"Key Concepts", icon:"💎"},
+  {id:"actions", label:"Do This", icon:"🌟"},
+  {id:"prompt", label:"Prompt", icon:"✨"}
+];
+
+/* ---------------- Build nav ---------------- */
+const navList=document.getElementById('navList');
+const mobileSelect=document.getElementById('mobileSelect');
+DAYS.forEach((d,i)=>{
+  const b=document.createElement('button');
+  b.className='nav-item';
+  b.innerHTML=`<span class="nav-ring"><span class="rn">${i+1}</span></span><span class="nav-ico">${d.emoji}</span><span class="nav-txt"><span class="nav-day">Day ${i+1}</span>${d.title}</span>`;
+  b.addEventListener('click',()=>go(i));
+  navList.appendChild(b);
+  const o=document.createElement('option');o.value=i;o.textContent=`Day ${i+1} · ${d.title}`;mobileSelect.appendChild(o);
+});
+mobileSelect.addEventListener('change',e=>go(+e.target.value));
+
+/* ---------------- Render ---------------- */
+const panel=document.getElementById('panel');
+
+function esc(s){return s;}
+
+function actBtn(btn){
+  if(!btn) return '';
+  if(btn.soon) return `<div class="btn-row"><span class="act-btn soon">${btn.label} · Coming soon</span></div>`;
+  return `<div class="btn-row"><a class="act-btn" href="${btn.href}" target="_blank" rel="noopener">${btn.label} <span class="arr">→</span></a></div>`;
+}
+
+function renderOverview(d){
+  let h=`<div class="pane"><div class="desc">${d.overview.desc}</div>`;
+  if(d.overview.hero){h+=`<div class="hero-callout"><div class="hero-mark">"</div><div class="hero-text">${d.overview.hero}</div></div>`;}
+  (d.overview.cards||[]).forEach(c=>{
+    h+=`<div class="info-card">${c.lead?`<div class="lead">${c.lead}</div>`:''}<h4>${c.h}</h4>${c.p.map(p=>`<p>${p}</p>`).join('')}</div>`;
+  });
+  h+=actBtn(d.overview.button);
+  return h+`</div>`;
+}
+function renderConcepts(d){
+  let h=`<div class="pane">`;
+  d.concepts.forEach((c,i)=>{
+    if(c.type==="pullquote"){h+=`<div class="pullquote"><p>${c.text}</p></div>`;}
+    else if(c.type==="accordion"){
+      h+=`<div class="accordion" data-acc="${i}"><button class="acc-head"><span class="acc-ico">${c.icon}</span><span class="acc-title">${c.h}</span><span class="acc-arrow">▼</span></button><div class="acc-body"><div class="acc-body-inner">${c.body}</div></div></div>`;
+    }
+    else if(c.type==="callout"){h+=`<div class="callout-box ${c.style||'gradient'}"><h4>${c.h}</h4><p>${c.body}</p></div>`;}
+  });
+  return h+`</div>`;
+}
+function renderActions(d){
+  let h=`<div class="pane"><div class="actions-lead"><div class="lead-badge">Do this today</div><p>These are the small moves that compound. Take them at your pace. This is where momentum starts.</p></div>`;
+  d.actions.forEach((a,i)=>{h+=`<div class="action-card"><div class="action-num">${String(i+1).padStart(2,'0')}</div><div class="action-text">${a}</div></div>`;});
+  h+=actBtn(d.actionButton);
+  if(d.closing) h+=SIG;
+  return h+`</div>`;
+}
+function renderPrompt(d){
+  if(!d.prompt) return '';
+  return `<div class="pane"><div class="prompt-intro">${d.promptIntro||''}</div><div class="prompt-box"><div class="prompt-hdr"><span class="prompt-badge">${d.promptBadge||'Copy-paste →'}</span><button class="prompt-copy" id="copyBtn">📋 Copy</button></div><div class="prompt-text" id="promptText">${d.prompt}</div></div></div>`;
+}
+
+function render(){
+  const d=DAYS[current];
+  const tabs=TAB_DEFS.filter(t=>t.id!=="prompt"||d.prompt);
+  const isDone=done[current];
+  const titleHTML = d.accent && d.title.includes(d.accent)
+    ? d.title.split(d.accent)[0]+`<span class="accent">${d.accent}</span>`+d.title.split(d.accent)[1]
+    : d.title;
+
+  let body='';
+  if(activeTab==="overview") body=renderOverview(d);
+  else if(activeTab==="concepts") body=renderConcepts(d);
+  else if(activeTab==="actions") body=renderActions(d);
+  else if(activeTab==="prompt") body=renderPrompt(d);
+
+  const nextIdx = current<DAYS.length-1 ? current+1 : null;
+
+  panel.innerHTML=`
+    <div class="lesson-meta">
+      <span class="meta-day">Day ${current+1} of ${DAYS.length} · ${d.dur}</span>
+      ${d.video?`<button class="meta-chip" id="videoChip">🎬 Watch video lesson</button>`:`<span class="meta-chip quick">⚡ Quick day</span>`}
+    </div>
+    <div class="lesson-head">
+      <div class="lesson-title"><span class="em">${d.emoji}</span>${titleHTML}</div>
+      <button class="mark-top ${isDone?'complete':''}" id="markTop">${isDone?'✦ Completed':'○ Mark Complete'}</button>
+    </div>
+    <div class="tabs">${tabs.map(t=>`<button class="tab ${activeTab===t.id?'active':''}" data-tab="${t.id}"><span>${t.icon}</span>${t.label}</button>`).join('')}</div>
+    <div class="tab-wrap">${body}</div>
+    <div class="lesson-bottom">
+      <button class="mark-big ${isDone?'complete':''}" id="markBig">${isDone?'✦ Lesson Complete':'✧ Mark Lesson Complete'}</button>
+      ${nextIdx!==null?`<button class="next-link" id="nextLink">Next: ${DAYS[nextIdx].title} <span>→</span></button>`:''}
+    </div>`;
+
+  // tab clicks
+  panel.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{activeTab=t.dataset.tab;render();}));
+  // video
+  const vc=document.getElementById('videoChip');
+  if(vc)vc.addEventListener('click',()=>openVideo(current));
+  // accordions
+  panel.querySelectorAll('.accordion').forEach(acc=>{
+    acc.querySelector('.acc-head').addEventListener('click',()=>{
+      const body=acc.querySelector('.acc-body');
+      const open=acc.classList.toggle('open');
+      body.style.maxHeight=open?body.scrollHeight+'px':'0';
+    });
+  });
+  // copy
+  const cb=document.getElementById('copyBtn');
+  if(cb)cb.addEventListener('click',()=>{
+    const txt=DAYS[current].prompt;
+    navigator.clipboard?.writeText(txt).catch(()=>{});
+    cb.textContent='✦ Copied!';cb.classList.add('copied');
+    setTimeout(()=>{cb.textContent='📋 Copy';cb.classList.remove('copied');},1800);
+  });
+  // mark complete (both buttons)
+  ['markTop','markBig'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('click',()=>{
+      done[current]=!done[current];
+      if(done[current])celebrate();
+      updateNav();render();
+    });
+  });
+  const nl=document.getElementById('nextLink');
+  if(nl)nl.addEventListener('click',()=>go(current+1));
+}
+
+function go(i){current=i;activeTab="overview";updateNav();render();window.scrollTo({top:0,behavior:'smooth'});}
+
+function updateNav(){
+  document.querySelectorAll('.nav-item').forEach((b,i)=>{
+    b.classList.toggle('active',i===current);
+    b.classList.toggle('done',done[i]);
+    const ring=b.querySelector('.rn');
+    if(ring)ring.textContent=done[i]?'✓':(i+1);
+  });
+  mobileSelect.value=current;
+  const c=done.filter(Boolean).length, pct=Math.round(c/DAYS.length*100);
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progPct').textContent=pct+'% complete';
+}
+
+/* ---------------- Confetti ---------------- */
+function celebrate(){
+  const c=document.getElementById('confetti');c.innerHTML='';c.classList.add('go');
+  const cols=['#cfc5e6','#a99cc9','#e0b6dd','#e3cd9a','#ffffff'];
+  for(let i=0;i<60;i++){
+    const s=document.createElement('i');
+    s.style.left=Math.random()*100+'%';
+    s.style.background=cols[i%cols.length];
+    s.style.animationDelay=Math.random()*.5+'s';
+    s.style.animationDuration=(1.8+Math.random()*1.2)+'s';
+    c.appendChild(s);
+  }
+  setTimeout(()=>c.classList.remove('go'),2600);
+}
+
+/* ---------------- Video modal ---------------- */
+const modalBg=document.getElementById('modalBg');
+const modalBody=document.getElementById('modalBody');
+const modalTitle=document.getElementById('modalTitle');
+
+function toEmbed(url){
+  if(!url) return null;
+  // YouTube
+  let m=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
+  if(m) return `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0`;
+  // Vimeo
+  m=url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(m) return `https://player.vimeo.com/video/${m[1]}?autoplay=1`;
+  // Loom
+  m=url.match(/loom\.com\/share\/([\w]+)/);
+  if(m) return `https://www.loom.com/embed/${m[1]}`;
+  // assume already embeddable
+  return url;
+}
+
+function openVideo(i){
+  const d=DAYS[i];
+  modalTitle.textContent=`Day ${i+1} · ${d.title}`;
+  const embed=toEmbed(d.videoUrl);
+  if(embed){
+    modalBody.innerHTML=`<div class="modal-video"><iframe src="${embed}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+  }else{
+    modalBody.innerHTML=`<div class="modal-soon"><div class="big">Video coming soon</div><div>This lesson's video will live right here. For now, the lesson content is below.</div></div>`;
+  }
+  modalBg.classList.add('open');
+}
+function closeVideo(){modalBg.classList.remove('open');modalBody.innerHTML='';}
+document.getElementById('modalClose').addEventListener('click',closeVideo);
+modalBg.addEventListener('click',e=>{if(e.target===modalBg)closeVideo();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo();});
+
+
+const sw=document.getElementById('stars');
+for(let i=0;i<44;i++){const s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*4+'s';s.style.transform=`scale(${.5+Math.random()})`;sw.appendChild(s);}
+
+go(0);
+</script>
+</body>
+</html>
