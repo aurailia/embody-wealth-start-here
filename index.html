@@ -21,8 +21,8 @@
     --ink-light:#e8e3f2;
     --ink-mid:#b3a9c9;
     --ink-dim:#8a80a3;
-    --card-dark:rgba(255,255,255,.04);
-    --card-line:rgba(207,197,230,.14);
+    --card-dark:rgba(28,19,48,.55);
+    --card-line:rgba(207,197,230,.16);
 
     --grad-tab:linear-gradient(120deg,#cfc5e6 0%,#a99cc9 55%,#ffffff 115%);
     --grad-tab-strong:linear-gradient(120deg,#b9a9dd 0%,#8a78b8 60%,#efeaf7 120%);
@@ -43,6 +43,13 @@
     min-height:100vh;
     background:var(--plum-deep);
   }
+  /* ===== BACKGROUND IMAGE =====
+     The image (background2.png) sits in the same folder as this file.
+     To change it: replace background2.png below with your filename.
+     To remove it: set --bg-image to none and --bg-photo-display to none. */
+  :root{ --bg-image:url('background2.png'); --bg-photo-display:block; }
+
+  /* Base gradient (always visible, and shows when no photo). */
   .bg-layer{
     position:fixed;inset:0;z-index:0;pointer-events:none;
     background:
@@ -53,12 +60,25 @@
       linear-gradient(165deg,#1c1330 0%,#2a1f3d 50%,#3d2c5a 100%);
     background-size:cover;background-position:center;
   }
+  /* Photo layer with medium scrim, plus a soft brand tint. Sits above the base gradient. */
+  .bg-photo{
+    position:fixed;inset:0;z-index:0;pointer-events:none;display:var(--bg-photo-display);
+    background-color:#13091f;
+    background-image:
+      radial-gradient(circle at 15% 12%, rgba(169,156,201,.14), transparent 45%),
+      radial-gradient(circle at 82% 86%, rgba(107,91,149,.18), transparent 48%),
+      linear-gradient(160deg, rgba(20,13,38,.42), rgba(28,19,48,.48) 50%, rgba(20,13,38,.54)),
+      var(--bg-image);
+    background-size:cover, cover, cover, contain;
+    background-position:center, center, center, top center;
+    background-repeat:no-repeat;
+  }
   .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .stars span{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;opacity:.5;animation:tw 4s ease-in-out infinite}
   @keyframes tw{0%,100%{opacity:.12}50%{opacity:.7}}
   @media (prefers-reduced-motion:reduce){.stars span{animation:none}}
 
-  .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:24px 20px 70px}
+  .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:24px 20px 70px}
 
   /* Header */
   .topbar{
@@ -74,12 +94,12 @@
 
   .mobile-nav{display:none}
 
-  .layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:20px;align-items:start}
+  .layout{display:grid;grid-template-columns:258px minmax(0,1fr);gap:18px;align-items:start}
 
   /* Sidebar */
   .sidebar{
-    background:rgba(255,255,255,.035);border:1px solid var(--card-line);
-    border-radius:var(--radius);padding:22px 16px;position:sticky;top:18px;backdrop-filter:blur(6px);
+    background:rgba(28,19,48,.62);border:1px solid var(--card-line);
+    border-radius:var(--radius);padding:22px 16px;position:sticky;top:18px;backdrop-filter:blur(12px);
   }
   .side-label{font-size:.64rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--lavender);font-weight:600;margin:4px 8px 8px;display:flex;align-items:center;gap:6px}
   .side-title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:#fff;margin:0 8px 16px;line-height:1.15}
@@ -140,7 +160,7 @@
   .modal-soon .big{font-family:var(--font-display);font-size:1.8rem;color:#fff;font-weight:600}
 
   .lesson-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:24px}
-  .lesson-title{font-family:var(--font-display);font-weight:700;font-size:2.7rem;line-height:1.05;color:#fff;letter-spacing:.3px}
+  .lesson-title{font-family:var(--font-display);font-weight:700;font-size:2.7rem;line-height:1.05;color:#fff;letter-spacing:.3px;text-shadow:0 2px 16px rgba(15,10,28,.55)}
   .lesson-title .em{font-size:2.4rem;margin-right:6px}
   .accent{background:var(--grad-pink);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
   .mark-top{border:1px solid rgba(207,197,230,.3);background:rgba(255,255,255,.04);cursor:pointer;
@@ -150,8 +170,8 @@
   .mark-top.complete{background:var(--grad-tab-strong);border-color:transparent;color:#fff}
 
   /* Tabs */
-  .tabs{display:flex;flex-wrap:nowrap;gap:4px;background:rgba(255,255,255,.04);border:1px solid var(--card-line);
-    padding:6px;border-radius:16px;margin-bottom:30px;overflow-x:auto;scrollbar-width:none}
+  .tabs{display:flex;flex-wrap:nowrap;gap:4px;background:rgba(28,19,48,.55);border:1px solid var(--card-line);
+    padding:6px;border-radius:16px;margin-bottom:30px;overflow-x:auto;scrollbar-width:none;backdrop-filter:blur(8px)}
   .tabs::-webkit-scrollbar{display:none}
   .tab{border:none;background:transparent;cursor:pointer;font-family:var(--font-body);font-size:.9rem;
     color:var(--ink-mid);padding:11px 20px;border-radius:11px;display:flex;align-items:center;gap:8px;
@@ -163,7 +183,7 @@
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   /* Overview */
-  .desc{font-size:1.08rem;color:var(--ink-light);margin-bottom:22px}
+  .desc{font-size:1.08rem;color:var(--ink-light);margin-bottom:22px;text-shadow:0 1px 12px rgba(15,10,28,.6)}
   .hero-callout{position:relative;background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(247,244,239,.92));
     border-radius:18px;padding:30px 34px 30px 30px;margin:24px 0}
   .hero-mark{position:absolute;top:6px;left:22px;font-family:var(--font-display);font-size:4rem;color:var(--lavender);opacity:.5;line-height:1}
@@ -182,8 +202,8 @@
   .mini-card p{color:var(--ink-mid);font-size:.95rem;margin:0}
 
   /* Key Concepts */
-  .pullquote{background:linear-gradient(120deg,rgba(207,197,230,.16),rgba(255,255,255,.08),rgba(169,156,201,.12));
-    border-left:3px solid var(--lavender);border-radius:14px;padding:24px 28px;margin:16px 0}
+  .pullquote{background:linear-gradient(120deg,rgba(56,42,86,.6),rgba(40,29,64,.55),rgba(56,42,86,.6));
+    border-left:3px solid var(--lavender);border-radius:14px;padding:24px 28px;margin:16px 0;backdrop-filter:blur(6px)}
   .pullquote p{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.45rem;line-height:1.35;color:#fff;margin:0}
 
   .accordion{background:var(--card-dark);border:1px solid var(--card-line);border-radius:14px;margin:10px 0;overflow:hidden}
@@ -274,6 +294,7 @@
 </head>
 <body>
 <div class="bg-layer"></div>
+<div class="bg-photo"></div>
 <div class="stars" id="stars"></div>
 <div class="confetti" id="confetti"></div>
 
