@@ -75,6 +75,7 @@
   }
   .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
   .stars span{position:absolute;width:2.5px;height:2.5px;border-radius:50%;background:#fff;opacity:.5;animation:tw 4s ease-in-out infinite}
+  body.modal-open .stars span{animation-play-state:paused}
   @keyframes tw{0%,100%{opacity:.12}50%{opacity:.7}}
   @media (prefers-reduced-motion:reduce){.stars span{animation:none}}
 
@@ -143,10 +144,11 @@
   .btn-row{margin:18px 0 4px}
 
   /* Video modal */
-  .modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,10,28,.82);backdrop-filter:blur(6px);
+  .modal-bg{position:fixed;inset:0;z-index:100;background:rgba(13,8,24,.92);
     display:none;align-items:center;justify-content:center;padding:24px}
   .modal-bg.open{display:flex;animation:fade .25s ease}
   .modal{width:100%;max-width:900px;background:var(--plum);border:1px solid rgba(207,197,230,.25);
+    contain:layout style paint;
     border-radius:20px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.7)}
   .modal-hdr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--card-line)}
   .modal-hdr h3{font-family:var(--font-display);font-size:1.35rem;color:#fff;font-weight:600}
@@ -709,8 +711,9 @@ function openVideo(i){
     modalBody.innerHTML=`<div class="modal-soon"><div class="big">Video coming soon</div><div>This lesson's video will live right here. For now, the lesson content is below.</div></div>`;
   }
   modalBg.classList.add('open');
+  document.body.classList.add('modal-open');
 }
-function closeVideo(){modalBg.classList.remove('open');modalBody.innerHTML='';}
+function closeVideo(){modalBg.classList.remove('open');document.body.classList.remove('modal-open');modalBody.innerHTML='';}
 document.getElementById('modalClose').addEventListener('click',closeVideo);
 modalBg.addEventListener('click',e=>{if(e.target===modalBg)closeVideo();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo();});
