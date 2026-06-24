@@ -248,8 +248,11 @@
   .prompt-copy.copied{background:var(--grad-tab-strong);border-color:transparent;color:#fff}
   .prompt-text{padding:22px 24px;color:var(--ink-light);white-space:pre-wrap;font-size:.98rem;line-height:1.6}
 
-  .link-out{color:var(--lavender-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--purple)}
-  .link-out:hover{color:#fff}
+  .link-out{color:#d9b3ff;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px;text-decoration-color:#b388e0;transition:.2s}
+  .link-out:hover{color:#fff;text-decoration-color:#fff}
+  /* Links inside light cards need a darker, readable color */
+  .callout-box.white .link-out,.callout-box.gradient .link-out,.action-card .link-out{color:#6b3fa0;text-decoration-color:#9a6dd0}
+  .callout-box.white .link-out:hover,.callout-box.gradient .link-out:hover,.action-card .link-out:hover{color:#4a2870}
 
   .sig{margin-top:30px;padding-top:22px;border-top:1px solid var(--card-line);
     font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--lavender-soft)}
@@ -365,7 +368,7 @@ const DAYS = [
   /* ---------------- DAY 2 ---------------- */
   {
     title:"Meet Your Wealth Queen", accent:"Wealth Queen", emoji:"👑", dur:"6 min", video:true, videoUrl:"https://www.loom.com/share/f7226cac51f64b08ba82bccaa0de0230",
-    links:{ queen:"https://aurailia.github.io/embody-wealth-queen-archetype/", chart:"https://www.ihdschool.com/get-your-chart" },
+    links:{ queen:"https://aurailia.github.io/embody-wealth-queen-archetype/", chart:"https://www.myhumandesign.com/" },
     overview:{
       desc:"Today you meet the version of you that money flows to most easily. Your Wealth Queen Archetype is the way you're built to create wealth. Not a generic money personality test. It reads how you're actually wired and hands you back your starting point in the circle.",
       hero:"It starts here. With you. With the woman you actually are underneath all the noise about who you're supposed to be.",
@@ -378,11 +381,11 @@ const DAYS = [
       {type:"accordion", icon:"🌀", h:"A quick word on Human Design",
         body:"Part of what shapes your Queen comes from your Human Design. It's a system that blends ancient wisdom with modern science. It pulls from the chakra system, the Kabbalah Tree of Life, the Chinese I-Ching, astrology, and quantum physics, and weaves them into one map of how your energy works. Think of it as an owner's manual for you. Most of us were taught to push, hustle, and copy what works for everyone else. Your design shows you the way that actually works for you."},
       {type:"callout", style:"gradient", h:"Grab your free chart first",
-        body:"The quiz uses your Type and Profile to read you accurately. Go to <a href='https://www.ihdschool.com/get-your-chart' target='_blank' rel='noopener' class='link-out'>ihdschool.com/get-your-chart</a>, enter your birth date, time, and place, and you'll get your Type (like Manifesting Generator or Projector) and Profile (two numbers, like 2/4). I also link it inside the quiz, so don't stress."},
+        body:"The quiz uses your Type and Profile to read you accurately. Go to <a href='https://www.myhumandesign.com/' target='_blank' rel='noopener' class='link-out'>myhumandesign.com</a>, enter your birth date, time, and place, and you'll get your Type (like Manifesting Generator or Projector) and Profile (two numbers, like 2/4). I also link it inside the quiz, so don't stress."},
       {type:"pullquote", text:"Answer honestly, not how you think you should. The real answer is the one that brings the real results."}
     ],
     actions:[
-      "Grab your free Human Design chart at <a href='https://www.ihdschool.com/get-your-chart' target='_blank' rel='noopener' class='link-out'>ihdschool.com/get-your-chart</a>. Note your Type and Profile.",
+      "Grab your free Human Design chart at <a href='https://www.myhumandesign.com/' target='_blank' rel='noopener' class='link-out'>myhumandesign.com</a>. Note your Type and Profile.",
       "Take the <a href='https://aurailia.github.io/embody-wealth-queen-archetype/' target='_blank' rel='noopener' class='link-out'>Wealth Queen Archetype quiz</a>. Read your whole result and sit with it.",
       "Start your 7-day embodiment practice. This is your first real practice, and it's made just for your Queen. Small daily steps.",
       "Share your Queen in the community. One sentence on what landed or what surprised you."
